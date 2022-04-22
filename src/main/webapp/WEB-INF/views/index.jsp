@@ -3,27 +3,48 @@
 <html>
 <head>
     <title>Accident</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<div>
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Названия</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${accidents}" var="accident">
+<div class="container">
+    <div class="row">
+        <div class="fw-bold">
+            Заявления о несчастных случаях
+        </div>
+        <table class="table table-striped table-hover">
+            <thead>
             <tr>
-                <td>
-                    <c:out value="${accident}"/>
-                </td>
+                <th scope="col">id</th>
+                <th scope="col">Название</th>
+                <th scope="col">Описане</th>
+                <th scope="col">Адрес</th>
             </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-
+            </thead>
+            <tbody>
+            <c:forEach items="${accidents}" var="accident">
+                <tr>
+                    <td>
+                        <c:out value="${accident.id}"/>
+                    </td>
+                    <td>
+                        <c:out value="${accident.name}"/>
+                    </td>
+                    <td>
+                        <c:out value="${accident.text}"/>
+                    </td>
+                    <td>
+                        <c:out value="${accident.address}"/>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
 </html>
