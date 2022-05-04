@@ -8,6 +8,9 @@ public class Accident {
     private String text;
     private String address;
 
+    public Accident() {
+    }
+
     public Accident(int id, String name, String text, String address) {
         this.id = id;
         this.name = name;
@@ -19,32 +22,36 @@ public class Accident {
         return id;
     }
 
-    public void setId(int id) {
+    public Accident setId(int id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Accident setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getText() {
         return text;
     }
 
-    public void setText(String text) {
+    public Accident setText(String text) {
         this.text = text;
+        return this;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public Accident setAddress(String address) {
         this.address = address;
+        return this;
     }
 
     @Override

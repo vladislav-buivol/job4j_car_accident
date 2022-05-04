@@ -9,6 +9,11 @@
 <body>
 <div class="container">
     <div class="row">
+        <a href="<c:url value='/create'/>">
+                            <span class='btn btn-primary'>
+                                Добавить инцидент
+                            </span>
+        </a>
         <div class="fw-bold">
             Заявления о несчастных случаях
         </div>
@@ -17,7 +22,7 @@
             <tr>
                 <th scope="col">id</th>
                 <th scope="col">Название</th>
-                <th scope="col">Описане</th>
+                <th scope="col">Описание</th>
                 <th scope="col">Адрес</th>
             </tr>
             </thead>

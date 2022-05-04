@@ -16,7 +16,7 @@ public class AccidentService {
         this.accidentMem = accidentMem;
     }
 
-    public void add(Accident accident) {
+    public void create(Accident accident) {
         accidentMem.add(accident);
     }
 
