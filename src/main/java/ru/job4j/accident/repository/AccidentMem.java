@@ -10,17 +10,22 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class AccidentMem {
-    private final AtomicInteger id = new AtomicInteger(0);
+    private final AtomicInteger id = new AtomicInteger(1);
     private HashMap<Integer, Accident> accidents = new HashMap<>();
 
     public AccidentMem() {
-        add(new Accident(id.get(), "Accident" + id.get(), "Desc", "Address"));
-        add(new Accident(id.get(), "Accident" + id.get(), "Desc", "Address"));
-        add(new Accident(id.get(), "Accident" + id.get(), "Desc", "Address"));
+        save(new Accident(id.get(), "Accident" + id.get(), "Desc", "Address"));
+        save(new Accident(id.get(), "Accident" + id.get(), "Desc", "Address"));
+        save(new Accident(id.get(), "Accident" + id.get(), "Desc", "Address"));
     }
 
-    public void add(Accident accident) {
-        accidents.putIfAbsent(id.getAndIncrement(), accident);
+    public void save(Accident accident) {
+        accident.setId(id.getAndIncrement());
+        accidents.putIfAbsent(accident.getId(), accident);
+    }
+
+    public void update(Accident accident) {
+        accidents.replace(accident.getId(), accident);
     }
 
     public Accident deleteById(int elId) {

@@ -16,15 +16,19 @@ public class AccidentService {
         this.accidentMem = accidentMem;
     }
 
-    public void create(Accident accident) {
-        accidentMem.add(accident);
+    public void save(Accident accident) {
+        if (accidentMem.getById(accident.getId()) == null) {
+            accidentMem.save(accident);
+        } else {
+            accidentMem.update(accident);
+        }
     }
 
     public Accident deleteById(int elId) {
         return accidentMem.deleteById(elId);
     }
 
-    public Accident getById(int id) {
+    public Accident findById(int id) {
         return accidentMem.getById(id);
     }
 
