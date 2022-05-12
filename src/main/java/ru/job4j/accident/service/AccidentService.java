@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class AccidentService {
 
-    private AccidentMem accidentMem;
+    private final AccidentMem accidentMem;
 
     public AccidentService(AccidentMem accidentMem) {
         this.accidentMem = accidentMem;

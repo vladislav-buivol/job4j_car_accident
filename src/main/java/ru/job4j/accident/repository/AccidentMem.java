@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Repository
 public class AccidentMem {
     private final AtomicInteger id = new AtomicInteger(1);
-    private HashMap<Integer, Accident> accidents = new HashMap<>();
+    private final HashMap<Integer, Accident> accidents = new HashMap<>();
 
     public AccidentMem() {
         save(new Accident(id.get(), "Accident" + id.get(), "Desc", "Address"));
