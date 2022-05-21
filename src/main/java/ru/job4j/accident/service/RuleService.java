@@ -2,36 +2,36 @@ package ru.job4j.accident.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.RuleMem;
+import ru.job4j.accident.repository.RuleJdbcTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class RuleService {
-    private final RuleMem mem;
+    private final RuleJdbcTemplate ruleJdbc;
 
-    public RuleService(RuleMem ruleMem) {
-        this.mem = ruleMem;
+    public RuleService(RuleJdbcTemplate ruleMem) {
+        this.ruleJdbc = ruleMem;
     }
 
     public void save(Rule rule) {
-        if (mem.getById(rule.getId()) == null) {
-            mem.save(rule);
+        if (ruleJdbc.getById(rule.getId()) == null) {
+            ruleJdbc.save(rule);
         } else {
-            mem.update(rule);
+            ruleJdbc.update(rule);
         }
     }
 
-    public Rule deleteById(int elId) {
-        return mem.deleteById(elId);
+    public boolean deleteById(int elId) {
+        return ruleJdbc.deleteById(elId);
     }
 
     public Rule findById(int id) {
-        return mem.getById(id);
+        return ruleJdbc.getById(id);
     }
 
     public List<Rule> getAll() {
-        return new ArrayList<>(mem.getAll().values());
+        return new ArrayList<>(ruleJdbc.getAll());
     }
 }
