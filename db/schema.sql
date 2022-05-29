@@ -37,7 +37,7 @@ values ('Статья. 1'),
        ('Статья. 3');
 
 
-insert into accident(name, text, address)
-values ('Accident 1', 'Desc', 'Address'),
-       ('Accident 2', 'Desc', 'Address'),
-       ('Accident 3', 'Desc', 'Address');
+insert into accident(name, text, address, type_id)
+values ('Accident 1', 'Desc', 'Address', 1),
+       ('Accident 2', 'Desc', 'Address', 2),
+       ('Accident 3', 'Desc', 'Address', 3);

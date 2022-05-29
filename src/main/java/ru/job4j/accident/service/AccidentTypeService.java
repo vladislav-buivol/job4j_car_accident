@@ -2,7 +2,7 @@ package ru.job4j.accident.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.AccidentType;
-import ru.job4j.accident.repository.AccidentTypeJdbcTemplate;
+import ru.job4j.accident.repository.AccidentTypeHbm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,30 +10,30 @@ import java.util.List;
 @Service
 public class AccidentTypeService {
 
-    private final AccidentTypeJdbcTemplate typeJdbc;
+    private final AccidentTypeHbm accidentTypeHbm;
 
-    public AccidentTypeService(AccidentTypeJdbcTemplate accidentMem) {
-        this.typeJdbc = accidentMem;
+    public AccidentTypeService(AccidentTypeHbm accidentTypeHbm) {
+        this.accidentTypeHbm = accidentTypeHbm;
     }
 
     public void save(AccidentType accident) {
-        if (typeJdbc.getById(accident.getId()) == null) {
-            typeJdbc.save(accident);
+        if (accidentTypeHbm.getById(accident.getId()) == null) {
+            accidentTypeHbm.save(accident);
         } else {
-            typeJdbc.update(accident);
+            accidentTypeHbm.update(accident);
         }
     }
 
     public boolean deleteById(int elId) {
-        return typeJdbc.deleteById(elId);
+        return accidentTypeHbm.deleteById(elId);
     }
 
     public AccidentType findById(int id) {
-        return typeJdbc.getById(id);
+        return accidentTypeHbm.getById(id);
     }
 
     public List<AccidentType> getAll() {
-        return new ArrayList<>(typeJdbc.getAll());
+        return new ArrayList<>(accidentTypeHbm.getAll());
     }
 
 }

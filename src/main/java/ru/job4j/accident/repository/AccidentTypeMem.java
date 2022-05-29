@@ -1,6 +1,5 @@
 package ru.job4j.accident.repository;
 
-import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.AccidentType;
 
 import java.util.Collections;
@@ -8,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Repository
 public class AccidentTypeMem {
     private final AtomicInteger id = new AtomicInteger(1);
     private final HashMap<Integer, AccidentType> types = new HashMap<>();
