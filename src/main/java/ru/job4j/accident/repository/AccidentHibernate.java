@@ -7,23 +7,22 @@ import ru.job4j.accident.model.Accident;
 import java.util.List;
 
 @Repository
-public class AccidentHibernate {
+public class AccidentHibernate implements Hbm {
     private final SessionFactory sf;
-    private final Hbm hbm = new Hbm();
 
     public AccidentHibernate(SessionFactory sf) {
         this.sf = sf;
     }
 
     public Accident save(Accident accident) {
-        return hbm.execute(session -> {
+        return execute(session -> {
             session.save(accident);
             return accident;
         }, sf.openSession());
     }
 
     public List<Accident> getAll() {
-        return hbm.execute(session ->
+        return execute(session ->
                         session
                                 .createQuery("select distinct ac from Accident ac "
                                         + "left join fetch ac.rules "
@@ -34,7 +33,7 @@ public class AccidentHibernate {
     }
 
     public Accident getById(int id) {
-        return hbm.execute(session -> (Accident) session
+        return execute(session -> (Accident) session
                 .createQuery("select distinct ac from Accident ac "
                         + "left join fetch ac.rules "
                         + "left join fetch ac.type "
@@ -45,7 +44,7 @@ public class AccidentHibernate {
 
 
     public boolean deleteById(int elId) {
-        return hbm.execute(session -> {
+        return execute(session -> {
             try {
                 session.delete(getById(elId));
                 return true;
@@ -56,7 +55,7 @@ public class AccidentHibernate {
     }
 
     public void update(Accident accident) {
-        hbm.execute(session -> session.merge(accident), sf
+        execute(session -> session.merge(accident), sf
                 .openSession());
     }
 }

@@ -15,7 +15,7 @@ public class Accident {
     private String text;
     private String address;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "type_id", nullable = false)
     private AccidentType type;
 

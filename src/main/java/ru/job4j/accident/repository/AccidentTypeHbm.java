@@ -7,35 +7,34 @@ import ru.job4j.accident.model.AccidentType;
 import java.util.List;
 
 @Repository
-public class AccidentTypeHbm {
+public class AccidentTypeHbm implements Hbm{
     private final SessionFactory sf;
-    private final Hbm hbm = new Hbm();
 
     public AccidentTypeHbm(SessionFactory sf) {
         this.sf = sf;
     }
 
     public AccidentType save(AccidentType accidentType) {
-        return hbm.execute(session -> {
+        return execute(session -> {
             session.save(accidentType);
             return accidentType;
         }, sf.openSession());
     }
 
     public List<AccidentType> getAll() {
-        return hbm.execute(session -> session
+        return execute(session -> session
                 .createQuery("from AccidentType", AccidentType.class)
                 .list(), sf.openSession());
     }
 
     public AccidentType getById(int id) {
-        return hbm.execute(session ->
+        return execute(session ->
                         session.get(AccidentType.class, id)
                 , sf.openSession());
     }
 
     public boolean deleteById(int elId) {
-        return hbm.execute(session -> {
+        return execute(session -> {
             try {
                 session.delete(getById(elId));
                 return true;
@@ -46,6 +45,6 @@ public class AccidentTypeHbm {
     }
 
     public void update(AccidentType accidentType) {
-        hbm.execute(session -> session.merge(accidentType), sf.openSession());
+        execute(session -> session.merge(accidentType), sf.openSession());
     }
 }

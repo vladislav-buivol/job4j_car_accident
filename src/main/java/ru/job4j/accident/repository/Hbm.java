@@ -5,12 +5,9 @@ import org.hibernate.Transaction;
 
 import java.util.function.Function;
 
-public class Hbm {
+public interface Hbm {
 
-    public Hbm() {
-    }
-
-    public <T> T execute(Function<Session, T> command, Session session) {
+    default <T> T execute(Function<Session, T> command, Session session) {
         final Transaction tx = session.beginTransaction();
         try {
             T rsl = command.apply(session);
