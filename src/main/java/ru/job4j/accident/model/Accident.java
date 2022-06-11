@@ -15,11 +15,11 @@ public class Accident {
     private String text;
     private String address;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "type_id", nullable = false)
     private AccidentType type;
 
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinTable(name = "accident_rule",
             joinColumns = {
                     @JoinColumn(name = "accident_id", referencedColumnName = "id", nullable = false)

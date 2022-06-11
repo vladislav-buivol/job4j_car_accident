@@ -2,36 +2,34 @@ package ru.job4j.accident.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.RuleHbm;
+import ru.job4j.accident.repository.RuleRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RuleService {
-    private final RuleHbm ruleHbm;
+    private final RuleRepository ruleRepo;
 
-    public RuleService(RuleHbm ruleHbm) {
-        this.ruleHbm = ruleHbm;
+    public RuleService(RuleRepository ruleRepo) {
+        this.ruleRepo = ruleRepo;
     }
 
     public void save(Rule rule) {
-        if (ruleHbm.getById(rule.getId()) == null) {
-            ruleHbm.save(rule);
-        } else {
-            ruleHbm.update(rule);
-        }
+        ruleRepo.save(rule);
     }
 
-    public boolean deleteById(int elId) {
-        return ruleHbm.deleteById(elId);
+    public void deleteById(int elId) {
+        ruleRepo.deleteById(elId);
     }
 
     public Rule findById(int id) {
-        return ruleHbm.getById(id);
+        Optional<Rule> rule = ruleRepo.findById(id);
+        return rule.orElse(new Rule());
     }
 
     public List<Rule> getAll() {
-        return new ArrayList<>(ruleHbm.getAll());
+        return new ArrayList<>(ruleRepo.findAll());
     }
 }

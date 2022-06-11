@@ -33,7 +33,8 @@ public class HbmConfig {
     }
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory(@Value("${hibernate.dialect}") String dialect, DataSource ds) {
+    public LocalSessionFactoryBean sessionFactory(@Value("${hibernate.dialect}") String dialect,
+                                                  DataSource ds) {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(ds);
         sessionFactory.setPackagesToScan("ru.job4j.accident.model");

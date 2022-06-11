@@ -6,7 +6,7 @@ import ru.job4j.accident.model.Accident;
 
 import java.util.List;
 
-@Repository
+
 public class AccidentHibernate implements Hbm {
     private final SessionFactory sf;
 

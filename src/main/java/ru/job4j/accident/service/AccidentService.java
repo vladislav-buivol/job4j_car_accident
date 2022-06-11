@@ -2,38 +2,35 @@ package ru.job4j.accident.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
-import ru.job4j.accident.repository.AccidentHibernate;
+import ru.job4j.accident.repository.AccidentRepository;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccidentService {
 
-    private final AccidentHibernate accidentHbm;
+    private final AccidentRepository accidentRepo;
 
-    public AccidentService(AccidentHibernate accidentJdbc) {
-        this.accidentHbm = accidentJdbc;
+    public AccidentService(AccidentRepository accidentJdbc) {
+        this.accidentRepo = accidentJdbc;
     }
 
     public void save(Accident accident) {
-        if (accident.getId() == 0) {
-            this.accidentHbm.save(accident);
-        } else {
-            this.accidentHbm.update(accident);
-        }
+        this.accidentRepo.save(accident);
     }
 
-    public boolean deleteById(int elId) {
-        return accidentHbm.deleteById(elId);
+    public void deleteById(int elId) {
+        accidentRepo.deleteById(elId);
     }
 
     public Accident findById(int id) {
-        return accidentHbm.getById(id);
+        Optional<Accident> ac = accidentRepo.findById(id);
+        return ac.orElse(new Accident());
     }
 
     public List<Accident> getAll() {
-        return new ArrayList<>(accidentHbm.getAll());
+        return accidentRepo.findAll();
     }
 
 }

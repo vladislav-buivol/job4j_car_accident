@@ -6,7 +6,7 @@ import ru.job4j.accident.model.Rule;
 
 import java.util.List;
 
-@Repository
+
 public class RuleHbm implements Hbm {
     private final SessionFactory sf;
 
