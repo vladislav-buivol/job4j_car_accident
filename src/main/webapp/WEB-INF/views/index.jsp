@@ -14,6 +14,9 @@
                                 Добавить инцидент
                             </span>
         </a>
+        <div>
+            Login as : ${user.username}
+        </div>
         <div class="fw-bold">
             Заявления о несчастных случаях
         </div>
